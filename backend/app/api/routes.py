@@ -9,7 +9,13 @@ router = APIRouter()
 async def simulate(request: SimulationRequest):
     """Endpoint for running a single simulation."""
     try:
-        result = simulator.run_single(request.algorithm, request.requests, request.start_head, request.disk_size)
+        result = simulator.run_single(
+            request.algorithm,
+            request.requests,
+            request.start_head,
+            request.disk_size,
+            direction=request.direction,
+        )
         return {"sequence": result.get("sequence", []), "total_head_movement": result.get("total_head_movement", 0)}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -20,3 +26,5 @@ async def compare(request: ComparisonRequest):
     """Endpoint for comparing multiple simulations."""
     results = simulator.run_compare(request.algorithms, request.requests, request.start_head, request.disk_size)
     return {"results": results}
+
+

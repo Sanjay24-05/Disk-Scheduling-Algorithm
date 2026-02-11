@@ -8,7 +8,6 @@
  
  ## API Endpoints
  - `POST /api/simulate`: Run a single algorithm.
- - `POST /api/compare`: Compare multiple algorithms.
 
  Run tests (from the `backend/` folder):
 

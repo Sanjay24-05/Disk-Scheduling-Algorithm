@@ -6,7 +6,7 @@ class SimulationRequest(BaseModel):
     requests: List[int]
     start_head: int
     disk_size: int
-    direction: Optional[str] = "up"
+    direction: Optional[str] = "right"
 
 class SimulationResponse(BaseModel):
     sequence: List[int]

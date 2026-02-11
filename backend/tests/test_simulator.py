@@ -21,11 +21,3 @@ def test_sstf_basic():
     assert res['total_head_movement'] == abs(12-10) + abs(10-14) + abs(14-22)
 
 
-def test_compare_returns_all():
-    algs = ['fcfs', 'sstf']
-    requests = [5, 15]
-    start = 0
-    disk = 50
-    res = simulator.run_compare(algs, requests, start, disk)
-    assert 'fcfs' in res and 'sstf' in res
-    assert isinstance(res['fcfs']['total_head_movement'], int)

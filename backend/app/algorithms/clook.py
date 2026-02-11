@@ -1,4 +1,4 @@
-def run(requests: list[int], start_head: int, disk_size: int):
+def run(requests: list[int], start_head: int, disk_size: int, direction: str = "right"):
     """
     Circular LOOK (C-LOOK) disk scheduling algorithm.
     :param requests: List of disk requests
@@ -12,18 +12,34 @@ def run(requests: list[int], start_head: int, disk_size: int):
     sequence = [start_head]
     total = 0
 
-    # service right ascending
-    for r in right:
-        total += abs(r - sequence[-1])
-        sequence.append(r)
+    normalized = "right" if direction in {"right", "up"} else "left"
 
-    # jump to smallest left request (wrap)
-    if left:
-        # count jump from last to first left
-        total += abs(sequence[-1] - left[0])
-        sequence.append(left[0])
-        for r in left[1:]:
+    if normalized == "right":
+        # service right ascending
+        for r in right:
             total += abs(r - sequence[-1])
             sequence.append(r)
+
+        # jump to smallest left request (wrap)
+        if left:
+            # count jump from last to first left
+            total += abs(sequence[-1] - left[0])
+            sequence.append(left[0])
+            for r in left[1:]:
+                total += abs(r - sequence[-1])
+                sequence.append(r)
+    else:
+        # service left descending
+        for r in reversed(left):
+            total += abs(r - sequence[-1])
+            sequence.append(r)
+
+        # jump to largest right request (wrap)
+        if right:
+            total += abs(sequence[-1] - right[-1])
+            sequence.append(right[-1])
+            for r in reversed(right[:-1]):
+                total += abs(r - sequence[-1])
+                sequence.append(r)
 
     return {"sequence": sequence, "total_head_movement": total}

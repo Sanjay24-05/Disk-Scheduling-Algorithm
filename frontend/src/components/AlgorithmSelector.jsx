@@ -2,7 +2,7 @@ import React from 'react';
 
 const AlgorithmSelector = ({ algorithm, setAlgorithm }) => {
     return (
-        <div id="algorithm-selector" style={{width:200}}>
+        <div id="algorithm-selector">
             <label>Algorithm</label>
             <select value={algorithm} onChange={e => setAlgorithm(e.target.value)}>
                 <option value="fcfs">FCFS</option>
