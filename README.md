@@ -18,6 +18,45 @@ A cross-platform simulator for various disk scheduling algorithms, featuring a F
 - **Styling**: Vanilla CSS with CSS custom properties
 - **Charts**: Custom SVG with CSS animations
 
+## Graphical Abstract
+
+```mermaid
+flowchart LR
+    U[User Input\nInitial Head, Requests, Direction, Mode] --> FE[React Frontend]
+
+    subgraph FE_LAYER[Frontend Layer]
+        FE --> M1[Single Mode\nInputPanel]
+        FE --> M2[Compare Mode\nCompareInputPanel]
+        M1 --> C1[HeadMovementChart]
+        M2 --> C2[MultiAlgorithmChart]
+    end
+
+    M1 --> API1[POST /api/simulate]
+    M2 --> API2[POST /api/compare]
+
+    subgraph BE_LAYER[FastAPI Backend]
+        API1 --> R[API Routes]
+        API2 --> R
+        R --> S[Simulator Core]
+        S --> A1[FCFS]
+        S --> A2[SSTF]
+        S --> A3[SCAN]
+        S --> A4[C-SCAN]
+        S --> A5[LOOK]
+        S --> A6[C-LOOK]
+    end
+
+    A1 --> OUT[Seek Sequence, Total Head Movement, Steps]
+    A2 --> OUT
+    A3 --> OUT
+    A4 --> OUT
+    A5 --> OUT
+    A6 --> OUT
+
+    OUT --> C1
+    OUT --> C2
+```
+
 ## Project Structure
 
 ```
