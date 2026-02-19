@@ -22,7 +22,7 @@ A cross-platform simulator for various disk scheduling algorithms, featuring a F
 
 ```mermaid
 flowchart LR
-    U[User Input\nInitial Head, Requests, Direction, Mode] --> FE[React Frontend]
+    U[User Input] --> FE[React Frontend]
 
     subgraph FE_LAYER[Frontend Layer]
         FE --> M1[Single Mode\nInputPanel]
