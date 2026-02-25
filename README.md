@@ -115,3 +115,7 @@ The frontend runs on `http://localhost:3000` and the backend API on `http://loca
 | C-SCAN | Yes | Circular SCAN - returns to start after reaching end |
 | LOOK | Yes | Like SCAN but only goes as far as last request |
 | C-LOOK | Yes | Circular LOOK - combines LOOK with C-SCAN behavior |
+
+
+
+END
